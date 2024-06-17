@@ -1,0 +1,11 @@
+<div class="login-card">
+
+    <div class="card-title">
+        <h1>Login</h1>
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="form-group">
+        <input formControlName="email" name="email" placeholder="Email" type="email">
+        <input formControlName="password" placeholder="Password" type="password">
+        <button>Submit</button>
+    </form>
+</div>

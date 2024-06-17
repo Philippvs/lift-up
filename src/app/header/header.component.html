@@ -1,0 +1,9 @@
+<div class="nav">
+    <label class="logo"> Lift-Up </label>
+    <div class="links">
+        <button *ngIf="auth.isLoggedIn()" class="nav-item" routerLink="/charts">Live data</button>
+        <button *ngIf="auth.isLoggedIn()" class="nav-item" routerLink="/history">History</button>
+        <button (click)="logout()" *ngIf="auth.isLoggedIn()" class="nav-item">Logout</button>
+    </div>
+
+</div>
