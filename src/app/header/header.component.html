@@ -1,9 +1,7 @@
-<div class="nav">
-    <label class="logo"> Lift-Up </label>
+<mat-toolbar class="nav">Lift-Up
     <div class="links">
-        <button *ngIf="auth.isLoggedIn()" class="nav-item" routerLink="/charts">Live data</button>
-        <button *ngIf="auth.isLoggedIn()" class="nav-item" routerLink="/history">History</button>
-        <button (click)="logout()" *ngIf="auth.isLoggedIn()" class="nav-item">Logout</button>
+        <a *ngIf="auth.isLoggedIn()" class="nav-item" mat-button routerLink="/charts">Live data</a>
+        <a *ngIf="auth.isLoggedIn()" class="nav-item" mat-button routerLink="/history">History</a>
+        <a (click)="logout()" *ngIf="auth.isLoggedIn()" class="nav-item" mat-button>Logout</a>
     </div>
-
-</div>
+</mat-toolbar>

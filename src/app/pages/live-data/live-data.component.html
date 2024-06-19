@@ -1,1 +1,39 @@
-<div [options]="options" class="demo-chart" echarts></div>
+<mat-tab-group>
+    <mat-tab *ngFor="let elevator of elevators" label="Elevator1">
+        <h1>Live Data</h1>
+        <div [options]="elevator.chartOption" class="demo-chart" echarts></div>
+        <h1>Maintenance Schedules</h1>
+        <mat-table [dataSource]="elevator.maintenanceSchedules">
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="task">
+                <mat-header-cell *matHeaderCellDef>Task</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.task}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <h1>Alerts</h1>
+        <mat-table [dataSource]="elevator.alerts">
+            <ng-container matColumnDef="timestamp">
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.timestamp}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="alert">
+                <mat-header-cell *matHeaderCellDef>Task</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.alert}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumnsAlerts"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumnsAlerts;"></mat-row>
+        </mat-table>
+    </mat-tab>
+</mat-tab-group>
+
+
+
