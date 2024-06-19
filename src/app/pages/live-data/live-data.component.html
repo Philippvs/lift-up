@@ -1,5 +1,12 @@
 <mat-tab-group>
-    <mat-tab *ngFor="let elevator of elevators" label="Elevator1">
+    <mat-tab *ngFor="let elevator of elevators" [label]="elevator.name">
+        <h1>Current Status</h1>
+        <label *ngIf="elevator.status === 'active'" class="green">
+            <mat-icon>check</mat-icon>
+            {{elevator.status}} </label>
+        <label *ngIf="elevator.status === 'faulted'" class="red">
+            <mat-icon>warning</mat-icon>
+            {{elevator.status}} </label>
         <h1>Live Data</h1>
         <div [options]="elevator.chartOption" class="demo-chart" echarts></div>
         <h1>Maintenance Schedules</h1>
@@ -33,6 +40,8 @@
             <mat-row *matRowDef="let row; columns: displayedColumnsAlerts;"></mat-row>
         </mat-table>
     </mat-tab>
+
+
 </mat-tab-group>
 
 

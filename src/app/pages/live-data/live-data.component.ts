@@ -14,33 +14,36 @@ import {
     MatRowDef,
     MatTable
 } from "@angular/material/table";
-import {NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatCard} from "@angular/material/card";
+import {MatIcon} from "@angular/material/icon";
 
-interface Schedule {
+export interface Schedule {
     date: string;
     task: string;
     status: string;
 }
 
-interface Alert {
+export interface Alert {
     timestamp: string;
     alert: string;
 }
 
 
-class Elevator {
+export class Elevator {
     name: string
     chartOption: EChartsOption;
     maintenanceSchedules: Schedule[];
     alerts: Alert[]
+    status: string
 
 
-    constructor(name: string, chartOption: EChartsOption, maintenanceSchedules: Schedule[], alerts: Alert[]) {
+    constructor(name: string, chartOption: EChartsOption, maintenanceSchedules: Schedule[], alerts: Alert[], status: string) {
         this.name = name;
         this.chartOption = chartOption;
         this.maintenanceSchedules = maintenanceSchedules;
         this.alerts = alerts;
+        this.status = status;
     }
 
 
@@ -64,7 +67,10 @@ class Elevator {
         MatHeaderRowDef,
         MatRowDef,
         NgForOf,
-        MatCard
+        MatCard,
+        NgClass,
+        NgIf,
+        MatIcon
     ],
     templateUrl: './live-data.component.html',
     styleUrl: './live-data.component.css'
@@ -83,9 +89,9 @@ export class LiveDataComponent implements OnInit {
         const days = 10;
         const hoursBack = 24; // 24 hours back from start date
         const count = 5;
-        this.elevators.push(new Elevator("elevator1", this.generateRandomData(5), this.generateMaintenanceSchedules(startDate, days), this.generateAlerts(startDate, hoursBack, count)))
-        this.elevators.push(new Elevator("elevator2", this.generateRandomData(6), this.generateMaintenanceSchedules(startDate, days), this.generateAlerts(startDate, hoursBack, count)))
-        this.elevators.push(new Elevator("elevator2", this.generateRandomData(7), this.generateMaintenanceSchedules(startDate, days), this.generateAlerts(startDate, hoursBack, count)))
+        this.elevators.push(new Elevator("elevator1", this.generateRandomData(5), this.generateMaintenanceSchedules(startDate, days), this.generateAlerts(startDate, hoursBack, count), "active"))
+        this.elevators.push(new Elevator("elevator2", this.generateRandomData(6), this.generateMaintenanceSchedules(startDate, days), this.generateAlerts(startDate, hoursBack, count), "faulted"))
+        this.elevators.push(new Elevator("elevator3", this.generateRandomData(7), this.generateMaintenanceSchedules(startDate, days), this.generateAlerts(startDate, hoursBack, count), "faulted"))
     };
 
     private generateRandomData(seed: number): EChartsOption {

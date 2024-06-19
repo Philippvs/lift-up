@@ -1,4 +1,9 @@
 <mat-toolbar class="nav">Lift-Up
+    <mat-slide-toggle
+            (change)="checked = !checked"
+            class="example-margin">
+        <label class="nav-item"> Notifications</label>
+    </mat-slide-toggle>
     <div class="links">
         <a *ngIf="auth.isLoggedIn()" class="nav-item" mat-button routerLink="/charts">Live data</a>
         <a *ngIf="auth.isLoggedIn()" class="nav-item" mat-button routerLink="/history">History</a>
